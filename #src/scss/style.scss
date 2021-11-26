@@ -1,0 +1,150 @@
+@mixin font($font_name, $file_name, $weight, $style) {
+   @font-face {
+      font-family: $font_name;
+      font-display: swap;
+      src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+      font-weight: #{$weight};
+      font-style: #{$style};
+   }
+}
+@import "fonts";
+
+//Переменные=======================
+$minWidth: 320px;
+$maxWidth: 1920;
+$maxWidthContainer: 1100 + 20;
+
+$dark100: rgba(31, 32, 65, 1);
+$white: #fff;
+$lavender: lavender;
+$darklavander: rgb(79, 50, 141);
+
+//<ОБОЛОЧКА>=================================================
+@import "null.scss";
+body {
+   color: $dark100;
+   font-family: "MuseoSans", sans-serif;
+   font-size: 16px;
+   &._lock {
+      overflow: hidden;
+   }
+}
+main {
+   width: 100%;
+   padding: 80px 0;
+   display: flex;
+}
+main::after {
+   content: " ";
+   display: block;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   z-index: -1;
+   opacity: 0.3;
+   background: url(../img/29032019love.jpg) 50% 0 / cover no-repeat;
+}
+.timer {
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
+   padding: 2em;
+   background-color: rgba(255, 255, 255, 0.7);
+   border: 1px solid rgba(63, 62, 63, 0.16);
+   border-radius: 20px;
+   box-shadow: 0px 5px 10px 2px rgba(79, 50, 141, 0.16);
+   &__title {
+      font-size: 1.7rem;
+      text-align: center;
+      margin-bottom: 2em;
+      color: $darklavander;
+   }
+   &__row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5em;
+      font-size: 2.3rem;
+      gap: 1.1em;
+   }
+   &__block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+      text-align: center;
+   }
+   &__text {
+      font-size: 1.1rem;
+      color: $darklavander;
+   }
+   &__hour,
+   &__minute,
+   &__second,
+   &__millisec {
+      margin-bottom: 0.5em;
+   }
+   &__button {
+      font-size: 1.2rem;
+      text-align: center;
+      width: 5.5em;
+      height: 1.8em;
+      border-radius: 7px;
+      background: $lavender;
+      box-shadow: 0px 5px 5px 2px rgba(189, 162, 246, 0.16);
+      transition-duration: 0.8s;
+      &:hover {
+         background: rgb(169, 169, 226);
+         box-shadow: 0px 5px 5px 2px rgba(79, 50, 141, 0.2);
+         color: $white;
+         transition-duration: 0.8s;
+      }
+      &:active {
+         background: $lavender;
+         box-shadow: 0px 10px 10px 2px rgba(118, 83, 191, 0.16) inset;
+         transition-duration: 0.8s;
+      }
+   }
+}
+@media (max-width: 630px) {
+   .timer__row {
+      font-size: 1.5rem;
+   }
+   .button__row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+   }
+   .row__button {
+      display: flex;
+      justify-content: space-evenly;
+   }
+}
+@media (max-width: 490px) {
+   .timer__row {
+      font-size: 1.5rem;
+   }
+   .timer__text {
+      font-size: 0.8rem;
+   }
+   .timer {
+      padding: 0.7em;
+   }
+}
+@media (max-width: 370px) {
+   .timer__row {
+      font-size: 1rem;
+   }
+}
+.results {
+   padding: 0 2em;
+   &__block {
+      margin-bottom: 1em;
+   }
+}
+.text-result {
+   margin-bottom: 1.1em;
+   font-size: 1.3rem;
+   text-align: center;
+}
